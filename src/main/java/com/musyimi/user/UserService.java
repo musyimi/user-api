@@ -1,5 +1,6 @@
 package com.musyimi.user;
 
+import com.musyimi.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,6 @@ public class UserService {
     public User getUser(Integer id) {
         return userDao.selectUserById(id)
                 .orElseThrow(
-                () -> new IllegalArgumentException("User with id [%s] not found".formatted(id)));
+                () -> new ResourceNotFoundException("User with id [%s] not found".formatted(id)));
     }
 }
