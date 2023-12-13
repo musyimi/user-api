@@ -1,7 +1,11 @@
 package com.musyimi;
 
+import com.musyimi.user.User;
+import com.musyimi.user.UserRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +19,29 @@ public class Main {
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
+    }
+
+    @Bean
+    CommandLineRunner runner(UserRepository userRepository) {
+        return args -> {
+            User hamadi = new User(
+                    "Hamadi",
+                    "Kibindoni",
+                    "0700000000",
+                    "hamadikibindoni@gmail.com",
+                    "Ruaka"
+            );
+
+            User Kaka = new User(
+                    "Kaka",
+                    "Zema",
+                    "070000220",
+                    "kakazema@gmail.com",
+                    "Kitui"
+            );
+            List<User> users = List.of(hamadi, Kaka);
+            userRepository.saveAll(users);
+        };
     }
 
 }

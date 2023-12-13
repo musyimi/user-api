@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Repository("list")
 public class UserDataAccessService implements UserDao{
 
     private static List<User> users;
@@ -44,5 +44,35 @@ public class UserDataAccessService implements UserDao{
         return users.stream()
                 .filter(u -> u.getId().equals(id))
                 .findFirst();
+    }
+
+    @Override
+    public void insertUser(User user) {
+        users.add(user);
+    }
+
+    @Override
+    public boolean existsUserWithEmail(String email) {
+        return users.stream()
+                .anyMatch(u -> u.getEmail().equals(email));
+    }
+
+    @Override
+    public boolean existsUserWithId(Integer id) {
+        return users.stream()
+                .anyMatch(u -> u.getId().equals(id));
+    }
+
+    @Override
+    public void deleteUserById(Integer userId) {
+        users.stream()
+                .filter(u -> u.getId().equals(userId))
+                .findFirst()
+                .ifPresent(users::remove);
+    }
+
+    @Override
+    public void updateUser(User update) {
+          users.add(update);
     }
 }

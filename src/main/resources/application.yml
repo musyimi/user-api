@@ -1,4 +1,25 @@
 server:
   port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+    max-http-header-size: 8096
   error:
     include-message: always
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/user
+    username: musyimi
+    password: password
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        globally_quoted_identifiers: true
+        format_sql: true
+    show-sql: false
+
+
+

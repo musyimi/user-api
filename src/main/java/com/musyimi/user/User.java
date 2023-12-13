@@ -1,20 +1,44 @@
 package com.musyimi.user;
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
 public class User{
+
+    @Id
+    @SequenceGenerator(
+            name = "user_id_sequence",
+            sequenceName = "user_id_sequence"
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_id_sequence"
+    )
     private Integer id;
+    @Column(nullable = false)
     private String first_name;
+    @Column(nullable = false)
     private String last_name;
+    @Column(nullable = false)
     private String phone_number;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String residence;
 
-    public User() {
-    }
+    public User() { }
 
     public User(Integer id, String first_name, String last_name, String phone_number, String email, String residence) {
         this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.residence = residence;
+    }
+    public User(String first_name, String last_name, String phone_number, String email, String residence) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.phone_number = phone_number;
