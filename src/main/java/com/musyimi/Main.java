@@ -1,5 +1,6 @@
 package com.musyimi;
 
+import com.github.javafaker.Faker;
 import com.musyimi.user.User;
 import com.musyimi.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -24,23 +25,15 @@ public class Main {
     @Bean
     CommandLineRunner runner(UserRepository userRepository) {
         return args -> {
-            User hamadi = new User(
-                    "Hamadi",
-                    "Kibindoni",
-                    "0700000000",
-                    "hamadikibindoni@gmail.com",
-                    "Ruaka"
+            var faker = new Faker();
+            User user = new User(
+                    faker.name().firstName(),
+                    faker.name().lastName(),
+                    faker.phoneNumber().phoneNumber(),
+                    faker.internet().emailAddress(),
+                    faker.address().fullAddress()
             );
-
-            User Kaka = new User(
-                    "Kaka",
-                    "Zema",
-                    "070000220",
-                    "kakazema@gmail.com",
-                    "Kitui"
-            );
-            List<User> users = List.of(hamadi, Kaka);
-            userRepository.saveAll(users);
+            userRepository.save(user);
         };
     }
 
