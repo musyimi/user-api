@@ -14,7 +14,7 @@ public class UserService {
 
     private final UserDao userDao;
 
-    public UserService(@Qualifier("jdbc") UserDao userDao) {
+    public UserService(@Qualifier("jpa") UserDao userDao) {
         this.userDao = userDao;
     }
 

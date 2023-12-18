@@ -10,5 +10,7 @@ public interface UserDao {
     boolean existsUserWithEmail(String email);
     boolean existsUserWithId(Integer id);
     void deleteUserById(Integer userId);
+
+
     void updateUser(User update);
 }
