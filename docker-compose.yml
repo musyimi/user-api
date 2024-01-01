@@ -1,3 +1,5 @@
+version: '1.0'
+
 services:
   db:
     container_name: postgres
@@ -5,12 +7,21 @@ services:
     environment:
       POSTGRES_USER: musyimi
       POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - db:/data/postgres
+      POSTGRES_DB: user
     ports:
       - "5430:5432"
     networks:
+      - db
+    restart: unless-stopped
+
+  app:
+    container_name: user-api
+    image: mwenekware/user-api
+    environment:
+       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/user
+    ports:
+      - "8088:8080"
+    depends_on:
       - db
     restart: unless-stopped
 
@@ -20,3 +31,4 @@ networks:
 
 volumes:
   db:
+
