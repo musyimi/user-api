@@ -7,9 +7,9 @@ server:
     include-message: always
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5430/user
+    url: jdbc:postgresql://dpg-cm9f9jmn7f5s73dhggg0-a.oregon-postgres.render.com:5432/user_t4tb
     username: musyimi
-    password: password
+    password: pJL5ocBGCy4qbx0RcBWNSPebqiUagHTj
 
   jpa:
     hibernate:
