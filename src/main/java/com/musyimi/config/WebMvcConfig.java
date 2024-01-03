@@ -11,9 +11,9 @@ import java.util.List;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Value("#{'${allowed-origins}'.split(',')}")
+    @Value("${cors.allowed-origins}")
     private List<String> allowedOrigins;
-    @Value("#{'${allowed-methods}'.split(',')}")
+    @Value("${cors.allowed-methods}")
     private List<String> allowedMethods;
 
     @Override
@@ -21,7 +21,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         CorsRegistration corsRegistration = registry.addMapping("/api/**");
         allowedOrigins.forEach(corsRegistration::allowedOrigins);
         allowedMethods.forEach(corsRegistration::allowedMethods);
-
 
     }
 }
