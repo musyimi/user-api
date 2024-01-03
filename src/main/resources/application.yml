@@ -5,6 +5,11 @@ server:
     max-http-header-size: 8096
   error:
     include-message: always
+
+cors:
+  allowed-origins: "*"
+  allowed-methods: "*"
+
 spring:
   datasource:
     url: jdbc:postgresql://dpg-cm9f9jmn7f5s73dhggg0-a.oregon-postgres.render.com:5432/user_t4tb
